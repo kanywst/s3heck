@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 )
 
-func GetX509Information(inputCertificate string, issuer bool, subject bool) (d string) {
+func GetX509Information(inputCertificate string, issuer bool, subject bool, validity bool) (d string) {
 	var (
 		chain     [][]byte
 		certBlock *pem.Block
@@ -22,15 +22,20 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool) (d s
 			chain = append(chain, certBlock.Bytes)
 		}
 	}
-	for _, c := range chain {
+	for i, c := range chain {
 		cert, _ := x509.ParseCertificate(c)
+		d += fmt.Sprintf("Certificate [%d]\n", i)
 		if issuer {
-			d += fmt.Sprintf("Issuer CN: %s\n", cert.Issuer.CommonName)
+			d += fmt.Sprintf("%2sIssuer: %s\n", "", cert.Issuer.CommonName)
 		}
 		if subject {
-			d += fmt.Sprintf("Subject CN: %s\n", cert.Subject.CommonName)
+			d += fmt.Sprintf("%2sSubject: %s\n", "", cert.Subject.CommonName)
 		}
-		d += "\n"
+		if validity {
+			d += fmt.Sprintf("%2sValidity:\n", "")
+			d += fmt.Sprintf("%4sNotBefore: %s\n", "", cert.NotBefore)
+			d += fmt.Sprintf("%4sNotAfter: %s\n", "", cert.NotAfter)
+		}
 	}
 	return
 }

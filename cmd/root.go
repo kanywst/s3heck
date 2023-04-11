@@ -27,7 +27,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "s3heck",
 	Short: "s3heck is a command line interface that can perform checks on the certificate chain.",
