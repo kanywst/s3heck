@@ -5,9 +5,10 @@ import (
 	"encoding/pem"
 	"fmt"
 	"io/ioutil"
+	"strings"
 )
 
-func GetX509Information(inputCertificate string, issuer bool, subject bool, validity bool) (d string) {
+func GetX509Information(inputCertificate string, issuer bool, subject bool, validity bool, dns bool) (d string) {
 	var (
 		chain     [][]byte
 		certBlock *pem.Block
@@ -24,7 +25,7 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool, vali
 	}
 	for i, c := range chain {
 		cert, _ := x509.ParseCertificate(c)
-		d += fmt.Sprintf("Certificate [%d]\n", i)
+		d += fmt.Sprintf("Certificate [%d]\n", i+1)
 		if issuer {
 			d += fmt.Sprintf("%2sIssuer: %s\n", "", cert.Issuer.CommonName)
 		}
@@ -35,6 +36,10 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool, vali
 			d += fmt.Sprintf("%2sValidity:\n", "")
 			d += fmt.Sprintf("%4sNotBefore: %s\n", "", cert.NotBefore)
 			d += fmt.Sprintf("%4sNotAfter: %s\n", "", cert.NotAfter)
+		}
+		if dns {
+			d += fmt.Sprintf("%2sX509v3 extensions\n", "")
+			d += fmt.Sprintf("%4sX509v3 Subject Alternative Name: %s\n", "", strings.Join(cert.DNSNames, ", "))
 		}
 	}
 	return
