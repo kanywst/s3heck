@@ -6,11 +6,13 @@ import (
 	"github.com/fatih/color"
 )
 
-Colors := map[int]string{
-	0: "red",
-	1: "blue",
-	2: "yellow",
-}
+var (
+	Colors = map[int]string{
+		0: "red",
+		1: "blue",
+		2: "yellow",
+	}
+)
 
 func ColorStr(k string, v string, c string) (ss string) {
 	switch c {
