@@ -12,7 +12,7 @@ s3heck is a command line interface that can perform checks on the certificate ch
 ## Usage
 
 ```bash
--h
+$ s3heck -h
 s3heck is a command line interface that can perform checks on the certificate chain.
 
 Usage:
