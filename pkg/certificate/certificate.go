@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"strings"
+
+	"github.com/kanywst/s3heck/pkg/color"
 )
 
 func GetX509Information(inputCertificate string, issuer bool, subject bool, validity bool, dns bool) (d string) {
@@ -13,6 +15,7 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool, vali
 		chain     [][]byte
 		certBlock *pem.Block
 	)
+
 	certBytes, _ := ioutil.ReadFile(inputCertificate)
 	for {
 		certBlock, certBytes = pem.Decode(certBytes)
@@ -27,13 +30,13 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool, vali
 		cert, _ := x509.ParseCertificate(c)
 		d += fmt.Sprintf("Certificate [%d]\n", i+1)
 		if issuer {
-			d += fmt.Sprintf("%2sIssuer: %s\n", "", cert.Issuer.CommonName)
+			d += color.FgColorStr("Issuer", cert.Issuer.CommonName, color.FgColors[i%len(color.FgColors)+1])
 		}
 		if subject {
-			d += fmt.Sprintf("%2sSubject: %s\n", "", cert.Subject.CommonName)
+			d += color.FgColorStr("Subject", cert.Subject.CommonName, color.FgColors[i%len(color.FgColors)])
 		}
 		if validity {
-			d += fmt.Sprintf("%2sValidity:\n", "")
+			d += color.FgColorStr("Validity", "", "")
 			d += fmt.Sprintf("%4sNotBefore: %s\n", "", cert.NotBefore)
 			d += fmt.Sprintf("%4sNotAfter: %s\n", "", cert.NotAfter)
 		}
