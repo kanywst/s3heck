@@ -1,46 +1,43 @@
 # s3heck
 
 - [s3heck](#s3heck)
-  - [Install](#install)
   - [Usage](#usage)
-    - [Help](#help)
-    - [Example](#example)
+    - [Subcommands](#subcommands)
+      - [Example](#example)
+  - [Installation](#installation)
+  - [Contributing](#contributing)
 
 s3heck is a command line interface that can perform checks on the certificate chain.
 
-## Install
-
-```bash
-git clone https://github.com/kanywst/s3heck.git
-cd s3heck
-go install
-```
-
 ## Usage
 
-### Help
-
 ```bash
-$ s3heck x509 -h
-display necessary information about x509 certificates
+$ s3heck -h
+s3heck is a command line interface that can perform checks on the certificate chain.
 
 Usage:
-  s3heck x509 [flags]
+  s3heck [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  x509        display necessary information about x509 certificates
 
 Flags:
-  -d, --dns          display subject alternative name
-  -h, --help         help for x509
-  -i, --issuer       display issuer
-  -p, --pem string   specify certificate input pem
-  -s, --subject      display subject
-  -v, --validity     display validity
+  -h, --help   help for s3heck
+
+Use "s3heck [command] --help" for more information about a command.
 ```
 
-### Example
+### Subcommands
+
+Use the `x509` to have outputs the desired information about the x509 certificate
+
+#### Example
 
 ```bash
 $ s3heck x509 -p ./data/cert.pem --issuer --subject --validity --dns
-Certificate [1]
+Certificate [0]
   Issuer: R3
   Subject: kanywst.top
   Validity:
@@ -48,7 +45,7 @@ Certificate [1]
     NotAfter: 2023-06-29 13:31:59 +0000 UTC
   X509v3 extensions
     X509v3 Subject Alternative Name: kanywst.top, tbow.kanywst.top
-Certificate [2]
+Certificate [1]
   Issuer: ISRG Root X1
   Subject: R3
   Validity:
@@ -56,7 +53,7 @@ Certificate [2]
     NotAfter: 2025-09-15 16:00:00 +0000 UTC
   X509v3 extensions
     X509v3 Subject Alternative Name:
-Certificate [3]
+Certificate [2]
   Issuer: DST Root CA X3
   Subject: ISRG Root X1
   Validity:
@@ -65,3 +62,19 @@ Certificate [3]
   X509v3 extensions
     X509v3 Subject Alternative Name:
 ```
+
+## Installation
+
+```bash
+git clone https://github.com/kanywst/s3heck.git
+cd s3heck
+go install
+```
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am "Add some feature"`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
