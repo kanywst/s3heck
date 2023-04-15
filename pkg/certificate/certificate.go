@@ -7,26 +7,8 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/fatih/color"
+	"github.com/kanywst/s3heck/pkg/color"
 )
-
-func certStr(k string, v string, c string) (ss string) {
-	switch c {
-	case "red":
-		red := color.New(color.FgRed).SprintFunc()
-		ss = fmt.Sprintf("%2s%s: %s\n", "", red(k), red(v))
-	case "blue":
-		blue := color.New(color.FgBlue).SprintFunc()
-		ss = fmt.Sprintf("%2s%s: %s\n", "", blue(k), blue(v))
-	case "yellow":
-		yellow := color.New(color.FgYellow).SprintFunc()
-		ss = fmt.Sprintf("%2s%s: %s\n", "", yellow(k), yellow(v))
-	default:
-		ss = fmt.Sprintf("%2s%s: %s\n", "", k, v)
-
-	}
-	return
-}
 
 func GetX509Information(inputCertificate string, issuer bool, subject bool, validity bool, dns bool) (d string) {
 	var (
@@ -34,11 +16,6 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool, vali
 		certBlock *pem.Block
 	)
 
-	colors := map[int]string{
-		0: "red",
-		1: "blue",
-		2: "yellow",
-	}
 	certBytes, _ := ioutil.ReadFile(inputCertificate)
 	for {
 		certBlock, certBytes = pem.Decode(certBytes)
@@ -53,13 +30,13 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool, vali
 		cert, _ := x509.ParseCertificate(c)
 		d += fmt.Sprintf("Certificate [%d]\n", i+1)
 		if issuer {
-			d += certStr("Issuer", cert.Issuer.CommonName, colors[i%len(colors)+1])
+			d += color.ColorStr("Issuer", cert.Issuer.CommonName, color.Colors[i%len(color.Colors)+1])
 		}
 		if subject {
-			d += certStr("Subject", cert.Subject.CommonName, colors[i%len(colors)])
+			d += color.ColorStr("Subject", cert.Subject.CommonName, color.Colors[i%len(color.Colors)])
 		}
 		if validity {
-			d += certStr("Validity", "", "")
+			d += color.ColorStr("Validity", "", "")
 			d += fmt.Sprintf("%4sNotBefore: %s\n", "", cert.NotBefore)
 			d += fmt.Sprintf("%4sNotAfter: %s\n", "", cert.NotAfter)
 		}
