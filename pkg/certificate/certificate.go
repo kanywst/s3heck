@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/kanywst/s3heck/pkg/color"
+	"github.com/kanywst/s3heck/pkg/certinfo"
 )
 
 func GetX509Information(inputCertificate string, issuer bool, subject bool, validity bool, dns bool) (d string) {
@@ -28,21 +28,18 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool, vali
 	}
 	for i, c := range chain {
 		cert, _ := x509.ParseCertificate(c)
-		d += fmt.Sprintf("Certificate [%d]\n", i+1)
+		d += fmt.Sprintf("Certificate [%d]\n", i)
 		if issuer {
-			d += color.FgColorStr("Issuer", cert.Issuer.CommonName, color.FgColors[i%len(color.FgColors)+1])
+			d += certinfo.PrintFgColor("Issuer", cert.Issuer.CommonName, certinfo.FgColors[i%len(certinfo.FgColors)+1])
 		}
 		if subject {
-			d += color.FgColorStr("Subject", cert.Subject.CommonName, color.FgColors[i%len(color.FgColors)])
+			d += certinfo.PrintFgColor("Subject", cert.Subject.CommonName, certinfo.FgColors[i%len(certinfo.FgColors)])
 		}
 		if validity {
-			d += color.FgColorStr("Validity", "", "")
-			d += fmt.Sprintf("%4sNotBefore: %s\n", "", cert.NotBefore)
-			d += fmt.Sprintf("%4sNotAfter: %s\n", "", cert.NotAfter)
+			d += certinfo.PrintValidity(cert.NotBefore, cert.NotAfter)
 		}
 		if dns {
-			d += fmt.Sprintf("%2sX509v3 extensions\n", "")
-			d += fmt.Sprintf("%4sX509v3 Subject Alternative Name: %s\n", "", strings.Join(cert.DNSNames, ", "))
+			d += certinfo.PrintX509Extensions(strings.Join(cert.DNSNames, ", "))
 		}
 	}
 	return
