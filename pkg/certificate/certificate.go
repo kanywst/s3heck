@@ -30,13 +30,13 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool, vali
 		cert, _ := x509.ParseCertificate(c)
 		d += fmt.Sprintf("Certificate [%d]\n", i+1)
 		if issuer {
-			d += color.ColorStr("Issuer", cert.Issuer.CommonName, color.Colors[i%len(color.Colors)+1])
+			d += color.FgColorStr("Issuer", cert.Issuer.CommonName, color.FgColors[i%len(color.FgColors)+1])
 		}
 		if subject {
-			d += color.ColorStr("Subject", cert.Subject.CommonName, color.Colors[i%len(color.Colors)])
+			d += color.FgColorStr("Subject", cert.Subject.CommonName, color.FgColors[i%len(color.FgColors)])
 		}
 		if validity {
-			d += color.ColorStr("Validity", "", "")
+			d += color.FgColorStr("Validity", "", "")
 			d += fmt.Sprintf("%4sNotBefore: %s\n", "", cert.NotBefore)
 			d += fmt.Sprintf("%4sNotAfter: %s\n", "", cert.NotAfter)
 		}
