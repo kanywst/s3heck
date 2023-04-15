@@ -1,7 +1,8 @@
-package color
+package certinfo
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/fatih/color"
 )
@@ -16,7 +17,7 @@ var (
 	}
 )
 
-func FgColorStr(k string, v string, c string) (ss string) {
+func PrintFgColor(k string, v string, c string) (ss string) {
 	switch c {
 	case "red":
 		red := color.New(color.FgRed).SprintFunc()
@@ -37,5 +38,18 @@ func FgColorStr(k string, v string, c string) (ss string) {
 		ss = fmt.Sprintf("%2s%s: %s\n", "", k, v)
 
 	}
+	return
+}
+
+func PrintValidity(notBefore time.Time, notAfter time.Time) (ss string) {
+	ss += fmt.Sprintf("%2sValidity\n", "")
+	ss += fmt.Sprintf("%4sNotBefore: %s\n", "", notBefore)
+	ss += fmt.Sprintf("%4sNotAfter: %s\n", "", notAfter)
+	return
+}
+
+func PrintX509Extensions(san string) (ss string) {
+	ss += fmt.Sprintf("%2sX509v3 extensions\n", "")
+	ss += fmt.Sprintf("%4sX509v3 Subject Alternative Name: %s\n", "", san)
 	return
 }
