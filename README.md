@@ -3,6 +3,7 @@
 - [s3heck](#s3heck)
   - [Usage](#usage)
     - [Subcommands](#subcommands)
+      - [Example](#example)
   - [Installation](#installation)
   - [Contributing](#contributing)
 
@@ -32,7 +33,7 @@ Use "s3heck [command] --help" for more information about a command.
 
 Use the `x509` to have outputs the desired information about the x509 certificate
 
-Example
+#### Example
 
 ```bash
 $ s3heck x509 -p ./data/cert.pem --issuer --subject --validity --dns
