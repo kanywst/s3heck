@@ -65,7 +65,7 @@ Certificate [2]
 
 example usage compare issuer and subject.
 
-![example usage compare issuer and subject.](images/example_usage.png)
+![example usage compare issuer and subject.](images/example_usage_compare_issuer_and_subject.png)
 
 ## Installation
 
