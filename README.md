@@ -63,6 +63,10 @@ Certificate [2]
     X509v3 Subject Alternative Name:
 ```
 
+example usage compare issuer and subject.
+
+![example usage compare issuer and subject.](img/example_usage.png)
+
 ## Installation
 
 ```bash
