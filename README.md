@@ -36,7 +36,7 @@ Use the `x509` to have outputs the desired information about the x509 certificat
 #### Example
 
 ```bash
-$ s3heck x509 -c ./_.google.com.cer -i -s -v -d
+$ s3heck x509 --certificate ~/_.google.com.cer --issuer --subject --validity --dns
 Certificate [0]
   Issuer: GTS CA 1C3
   Subject: *.google.com
