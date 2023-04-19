@@ -30,10 +30,9 @@ var x509Cmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(x509Cmd)
 
-	x509Cmd.Flags().StringVarP(&o.certificateFileName, "pem", "p", "", "specify certificate input pem")
+	x509Cmd.Flags().StringVarP(&o.certificateFileName, "certificate", "c", "", "specify server certificate")
 	x509Cmd.Flags().BoolVarP(&o.issuerCommonName, "issuer", "i", false, "display issuer")
 	x509Cmd.Flags().BoolVarP(&o.subjectCommonName, "subject", "s", false, "display subject")
 	x509Cmd.Flags().BoolVarP(&o.validity, "validity", "v", false, "display validity")
 	x509Cmd.Flags().BoolVarP(&o.dns, "dns", "d", false, "display subject alternative name")
-
 }
