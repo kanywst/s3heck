@@ -1,0 +1,84 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            04:20:50:af:c1:ab:d1:2b:da:c7:06:a9:28:34:8b:51:5e:02
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, O = Let's Encrypt, CN = R3
+        Validity
+            Not Before: Mar 31 13:32:00 2023 GMT
+            Not After : Jun 29 13:31:59 2023 GMT
+        Subject: CN = kanywst.top
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:88:a3:d3:12:1f:65:47:75:8b:a3:e8:7f:3f:46:
+                    9a:e8:9a:cb:b3:a6:c4:57:38:65:7a:2c:15:e0:25:
+                    7c:51:8e:82:69:b7:07:f2:60:c5:43:39:96:1c:77:
+                    55:84:a1:94:3a:06:41:b4:71:95:f9:cf:6c:43:a6:
+                    f8:55:21:13:35
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                25:EB:66:01:81:AD:41:D1:38:C6:48:49:4C:CE:A8:5A:E9:A9:96:16
+            X509v3 Authority Key Identifier: 
+                14:2E:B3:17:B7:58:56:CB:AE:50:09:40:E6:1F:AF:9D:8B:14:C2:C6
+            Authority Information Access: 
+                OCSP - URI:http://r3.o.lencr.org
+                CA Issuers - URI:http://r3.i.lencr.org/
+            X509v3 Subject Alternative Name: 
+                DNS:kanywst.top, DNS:tbow.kanywst.top
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.1
+                Policy: 1.3.6.1.4.1.44947.1.1.1
+                  CPS: http://cps.letsencrypt.org
+            CT Precertificate SCTs: 
+                Signed Certificate Timestamp:
+                    Version   : v1 (0x0)
+                    Log ID    : B7:3E:FB:24:DF:9C:4D:BA:75:F2:39:C5:BA:58:F4:6C:
+                                5D:FC:42:CF:7A:9F:35:C4:9E:1D:09:81:25:ED:B4:99
+                    Timestamp : Mar 31 14:32:01.149 2023 GMT
+                    Extensions: none
+                    Signature : ecdsa-with-SHA256
+                                30:44:02:20:23:D6:F1:30:73:63:C9:67:33:12:E3:90:
+                                3D:72:B3:56:31:BA:8A:35:45:19:2D:3F:B5:7E:D1:60:
+                                DF:F4:C5:7C:02:20:74:61:30:38:5A:EC:0A:20:84:62:
+                                4C:62:34:2F:5E:E1:2D:5A:47:7F:D0:DC:A8:8C:78:C4:
+                                F1:32:3B:7D:50:7D
+                Signed Certificate Timestamp:
+                    Version   : v1 (0x0)
+                    Log ID    : AD:F7:BE:FA:7C:FF:10:C8:8B:9D:3D:9C:1E:3E:18:6A:
+                                B4:67:29:5D:CF:B1:0C:24:CA:85:86:34:EB:DC:82:8A
+                    Timestamp : Mar 31 14:32:01.231 2023 GMT
+                    Extensions: none
+                    Signature : ecdsa-with-SHA256
+                                30:44:02:20:01:AC:3C:8D:8C:E2:79:FF:0F:07:37:61:
+                                5A:70:5B:B3:ED:78:44:99:CD:6B:35:F5:1F:F9:7A:C1:
+                                EA:A9:6D:FC:02:20:04:19:20:79:4B:C5:4B:B0:4C:11:
+                                02:0D:4D:BD:DD:D9:35:92:CC:62:CB:57:90:ED:CC:0F:
+                                E5:B4:DB:B4:A8:A3
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        b6:25:c2:ff:29:42:1f:49:87:04:f9:f9:fd:d3:76:f1:ad:0e:
+        4d:ab:63:8b:14:c2:a0:37:a9:2d:81:9b:d6:96:4e:9f:ca:00:
+        1f:41:51:4d:c2:03:2b:f7:63:a1:e9:6c:70:e2:3d:4e:c7:de:
+        71:4d:83:0a:6a:13:1a:4c:1d:aa:bc:8c:27:fc:87:4c:fd:21:
+        a6:e5:5e:67:3a:f8:2b:61:78:ea:cf:c3:ca:87:c9:aa:9b:a2:
+        2e:37:a8:4e:13:db:b2:6b:44:87:21:4a:f1:61:a4:e5:2d:ff:
+        20:54:0d:e2:4c:dc:c8:9f:ba:43:0c:6f:3e:8b:5d:64:d0:1e:
+        85:7e:ba:c6:f1:1a:55:c2:dc:b5:9c:e1:b4:c4:96:54:f6:51:
+        6f:ca:8e:6c:48:d2:d3:93:80:d5:1f:c1:4c:3d:69:7f:a3:54:
+        c3:88:4c:b5:fa:8d:c1:a6:7d:3a:59:95:84:30:85:50:57:8d:
+        2c:8e:ff:b1:5d:91:ba:83:ee:e9:25:43:57:c5:07:10:9d:8d:
+        c8:6a:a2:80:63:f1:ce:61:e9:27:47:10:41:d5:50:1c:39:e5:
+        34:b2:16:1b:51:36:11:8d:b2:10:cc:79:37:eb:d1:92:6e:5c:
+        f5:4f:cd:0b:fb:28:eb:3c:d8:4d:5d:c8:28:a5:5c:9e:28:52:
+        94:fa:ec:f7
