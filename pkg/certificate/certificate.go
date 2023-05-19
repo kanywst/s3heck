@@ -10,7 +10,7 @@ import (
 	"github.com/kanywst/s3heck/pkg/certinfo"
 )
 
-func GetX509Information(inputCertificate string, issuer bool, subject bool, validity bool, dns bool) (d string) {
+func GetX509Information(inputCertificate string, serialNumber bool, issuer bool, subject bool, validity bool, dns bool) (d string) {
 	var (
 		chain     [][]byte
 		certBlock *pem.Block
@@ -29,6 +29,9 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool, vali
 	for i, c := range chain {
 		cert, _ := x509.ParseCertificate(c)
 		d += fmt.Sprintf("Certificate [%d]\n", i)
+		if serialNumber {
+			d += certinfo.PrintFgColor("Serial Number", cert.SerialNumber.String(), "")
+		}
 		if issuer {
 			d += certinfo.PrintFgColor("Issuer", cert.Issuer.CommonName, certinfo.FgColors[i%len(certinfo.FgColors)+1])
 		}
