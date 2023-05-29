@@ -43,8 +43,8 @@ func PrintFgColor(k string, v string, c string) (ss string) {
 
 func PrintValidity(notBefore time.Time, notAfter time.Time) (ss string) {
 	ss += fmt.Sprintf("%2sValidity\n", "")
-	ss += fmt.Sprintf("%4sNotBefore: %s\n", "", notBefore)
-	ss += fmt.Sprintf("%4sNotAfter : %s\n", "", notAfter)
+	ss += fmt.Sprintf("%4sfrom : %2s\n", "", notBefore)
+	ss += fmt.Sprintf("%4sto   : %2s\n", "", notAfter)
 	return
 }
 
