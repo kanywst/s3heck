@@ -34,7 +34,7 @@ func GetX509Information(inputCertificate string, issuer bool, subject bool, vali
 			sanDns := strings.Join(cert.DNSNames, ", ")
 			d += certinfo.PrintFgColor("Issuer", cert.Issuer.CommonName, certinfo.FgColors[i%len(certinfo.FgColors)+1])
 			if len(sanDns) != 0 {
-				d += certinfo.PrintFgColor("Subject", cert.Subject.CommonName+" "+strings.Join(cert.DNSNames, ", "), certinfo.FgColors[i%len(certinfo.FgColors)])
+				d += certinfo.PrintFgColor("Subject", cert.Subject.CommonName+", "+strings.Join(cert.DNSNames, ", "), certinfo.FgColors[i%len(certinfo.FgColors)])
 			} else {
 				d += certinfo.PrintFgColor("Subject", cert.Subject.CommonName, certinfo.FgColors[i%len(certinfo.FgColors)])
 			}

@@ -36,6 +36,5 @@ func init() {
 	x509Cmd.Flags().BoolVarP(&o.subjectCommonName, "subject", "s", false, "Output subject")
 	x509Cmd.Flags().BoolVarP(&o.validity, "validity", "v", false, "Output validity")
 	x509Cmd.Flags().BoolVarP(&o.dns, "dns", "d", false, "Output subject alternative name")
-	x509Cmd.Flags().BoolVarP(&o.short, "short", "t", false, "Output minimum information")
-
+	x509Cmd.Flags().BoolVarP(&o.short, "short", "t", false, "Output minimum Output information about minimum x509 certificates")
 }
