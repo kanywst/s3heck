@@ -8,48 +8,24 @@ import (
 )
 
 var (
-	FgColors = map[int]string{
-		0: "red",
-		1: "yellow",
-		2: "blue",
-		3: "green",
-		4: "cyan",
+	FgColors = []color.Attribute{
+		color.FgRed,
+		color.FgYellow,
+		color.FgBlue,
+		color.FgGreen,
+		color.FgCyan,
 	}
 )
 
-func PrintFgColor(k string, v string, c string) (ss string) {
-	switch c {
-	case "red":
-		red := color.New(color.FgRed).SprintFunc()
-		ss = fmt.Sprintf("%2s%s: %s\n", "", red(k), red(v))
-	case "yellow":
-		yellow := color.New(color.FgYellow).SprintFunc()
-		ss = fmt.Sprintf("%2s%s: %s\n", "", yellow(k), yellow(v))
-	case "blue":
-		blue := color.New(color.FgBlue).SprintFunc()
-		ss = fmt.Sprintf("%2s%s: %s\n", "", blue(k), blue(v))
-	case "green":
-		green := color.New(color.FgGreen).SprintFunc()
-		ss = fmt.Sprintf("%2s%s: %s\n", "", green(k), green(v))
-	case "cyan":
-		cyan := color.New(color.FgCyan).SprintFunc()
-		ss = fmt.Sprintf("%2s%s: %s\n", "", cyan(k), cyan(v))
-	default:
-		ss = fmt.Sprintf("%2s%s: %s\n", "", k, v)
-
-	}
-	return
+func PrintFgColor(k, v string, c color.Attribute) string {
+	colorFunc := color.New(c).SprintFunc()
+	return fmt.Sprintf("%2s%s: %s\n", "", colorFunc(k), colorFunc(v))
 }
 
-func PrintValidity(notBefore time.Time, notAfter time.Time) (ss string) {
-	ss += fmt.Sprintf("%2sValidity\n", "")
-	ss += fmt.Sprintf("%4sfrom : %2s\n", "", notBefore)
-	ss += fmt.Sprintf("%4sto   : %2s\n", "", notAfter)
-	return
+func PrintValidity(notBefore, notAfter time.Time) string {
+	return fmt.Sprintf("%2sValidity\n%4sfrom : %s\n%4sto   : %s\n", "", "", notBefore, "", notAfter)
 }
 
-func PrintX509Extensions(san string) (ss string) {
-	ss += fmt.Sprintf("%2sX509v3 extensions\n", "")
-	ss += fmt.Sprintf("%4sX509v3 Subject Alternative Name: %s\n", "", san)
-	return
+func PrintX509Extensions(san string) string {
+	return fmt.Sprintf("%2sX509v3 extensions\n%4sX509v3 Subject Alternative Name: %s\n", "", "", san)
 }

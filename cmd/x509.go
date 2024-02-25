@@ -16,15 +16,17 @@ type Options struct {
 	short               bool
 }
 
-var (
-	o = &Options{}
-)
+var o = &Options{}
 
 var x509Cmd = &cobra.Command{
 	Use:   "x509",
 	Short: "Output necessary information about x509 certificates",
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
+		if o.certificateFileName == "" {
+			return fmt.Errorf("certificate file name not provided")
+		}
 		fmt.Print(certificate.GetX509Information(o.certificateFileName, o.issuerCommonName, o.subjectCommonName, o.validity, o.dns, o.short))
+		return nil
 	},
 }
 
