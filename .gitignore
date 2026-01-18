@@ -1,0 +1,36 @@
+# Binaries
+#
+/bin/
+/dist/
+s3heck
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test Output
+#
+*.out
+*.test
+
+# Editor/IDE
+#
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+#
+.DS_Store
+Thumbs.db
+
+# Project Specific
+#
+demo.gif
+*.crt
+*.key
+*.csr
+

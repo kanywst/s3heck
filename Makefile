@@ -1,34 +1,56 @@
-.DEFAULT_GOAL := help
+# Makefile for s3heck
 
-ifeq ($(GOPATH),)
-	GOPATH := $(shell pwd)
-endif
+BINARY_NAME := s3heck
+BUILD_DIR := bin
 
-export GOPATH
+# Git information
+VERSION := $(shell git describe --tags --always --dirty)
+COMMIT := $(shell git rev-parse --short HEAD)
+DATE := $(shell date -u +%Y-%m-%dT%H:%M:%SZ)
 
-BIN_NAME := s3
+# Linker flags
+LDFLAGS := -ldflags "-X github.com/kanywst/s3heck/cmd.Version=$(VERSION) -X github.com/kanywst/s3heck/cmd.Commit=$(COMMIT) -X github.com/kanywst/s3heck/cmd.Date=$(DATE)"
 
-.PHONY: help
-help:
-	@echo "Usage: make [target]"
-	@echo ""
-	@echo "Targets:"
-	@echo "  build-mac       Build for macOS"
-	@echo "  build-linux     Build for Linux"
-	@echo "  clean           Clean build artifacts"
-	@echo "  help            Show this help message"
+.PHONY: all
+all: lint test build
 
-.PHONY: build-mac
-build-mac:
-	@echo "Building for macOS..."
-	GOOS=darwin GOARCH=amd64 go build -o ${GOPATH}/$(BIN_NAME) .
+.PHONY: build
+build:
+	@echo "📦 Building $(BINARY_NAME)..."
+	@mkdir -p $(BUILD_DIR)
+	go build $(LDFLAGS) -o $(BUILD_DIR)/$(BINARY_NAME) .
 
-.PHONY: build-linux
-build-linux:
-	@echo "Building for Linux..."
-	GOOS=linux GOARCH=amd64 go build -o $(GOPATH)/$(BIN_NAME).linux .
+.PHONY: run
+run: build
+	@echo "🚀 Running $(BINARY_NAME)..."
+	@$(BUILD_DIR)/$(BINARY_NAME)
 
 .PHONY: clean
 clean:
-	@echo "Cleaning build artifacts..."
-	rm -rf $(GOPATH)
+	@echo "🧹 Cleaning..."
+	@rm -rf $(BUILD_DIR)
+	@rm -f demo.gif
+
+.PHONY: test
+test:
+	@echo "🧪 Testing..."
+	go test -v ./...
+
+.PHONY: lint
+lint:
+	@echo "🔍 Linting..."
+	@if command -v golangci-lint > /dev/null; then \
+		golangci-lint run; \
+	else \
+		echo "golangci-lint not installed. Skipping."; \
+	fi
+
+.PHONY: demo
+demo:
+	@echo "🎥 Generating demo GIF..."
+	vhs demo.tape
+
+.PHONY: release-dry
+release-dry:
+	@echo "📦 Testing release build..."
+	goreleaser release --snapshot --clean
