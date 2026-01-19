@@ -21,8 +21,16 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/kanywst/s3heck/cmd"
+import (
+	"embed"
+
+	"github.com/kanywst/s3heck/cmd"
+)
+
+//go:embed embedded_docs/*
+var docsFS embed.FS
 
 func main() {
+	cmd.SetDocsFS(docsFS)
 	cmd.Execute()
 }

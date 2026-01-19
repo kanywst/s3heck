@@ -22,29 +22,27 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"os"
+	"fmt"
 
 	"github.com/spf13/cobra"
 )
 
-var rootCmd = &cobra.Command{
-	Use:   "s3heck",
-	Short: "s3heck: The Modern All-in-One PKI & mTLS Orchestrator (2026 Edition)",
-	Long: `s3heck is the ultimate CLI tool designed to unify and simplify the management 
-of the Smallstep ecosystem (Autocert, Step Issuer, Certificates, KMS Plugin) and general mTLS workflows.
+var (
+	Version = "dev"
+	Commit  = "none"
+	Date    = "unknown"
+)
 
-It solves the complexity of managing disparate PKI tools by providing a single interface for:
-- Scaffolding configurations
-- Diagnosing certificate chains and mTLS connections
-- Learning from local documentation`,
-}
-
-func Execute() {
-	if err := rootCmd.Execute(); err != nil {
-		os.Exit(1)
-	}
+var versionCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print the version information",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Printf("s3heck version: %s\n", Version)
+		fmt.Printf("commit: %s\n", Commit)
+		fmt.Printf("build date: %s\n", Date)
+	},
 }
 
 func init() {
-	// Global flags can be defined here
+	rootCmd.AddCommand(versionCmd)
 }

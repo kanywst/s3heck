@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-mtls
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-mtls
+  template:
+    metadata:
+      annotations:
+        autocert.step.sm/name: hello-mtls.default.svc.cluster.local
+      labels:
+        app: hello-mtls
+    spec:
+      containers:
+      - name: hello-mtls
+        image: smallstep/hello-mtls-server-go:latest
