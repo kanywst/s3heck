@@ -1,4 +1,4 @@
-# s3heck (The Unified PKI Orchestrator)
+# s3heck
 
 ![GitHub Actions](https://github.com/kanywst/s3heck/actions/workflows/ci.yml/badge.svg)
 ![Go Version](https://img.shields.io/github/go-mod/go-version/kanywst/s3heck)
@@ -24,9 +24,9 @@ It replaces obscure `openssl` commands and manual Kubernetes log hunting with in
 - **Proactive Warnings**: Warns about expiring certs, weak algorithms (SHA1/MD5), and untrusted chains.
 - **Production Scaffolding**: Generates best-practice configurations for the Smallstep ecosystem.
 
-## 🚀 Features
+## Features
 
-- **🔍 Smart Diagnostics (`check`)**:
+- **Smart Diagnostics (`check`)**:
   - **Remote**: Auto-detects TLS version, SNI issues, chain validity (verified against system trust store), and expiration.
   - **Local**: Validates PEM format, parses multiple certificates in a chain, and checks security standards.
   - **Kubernetes**: Deep scans `autocert` and `step-issuer` status, parsing Pod logs, K8s Events (JSON), and Webhook configurations for common errors.
@@ -44,7 +44,7 @@ It replaces obscure `openssl` commands and manual Kubernetes log hunting with in
 go install github.com/kanywst/s3heck@latest
 ```
 
-## 🛠 Usage
+## Usage
 
 ### 1. Intelligent Diagnostics
 
